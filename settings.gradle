@@ -1,0 +1,2 @@
+include ':BeUtils'
+rootProject.name = 'BeUtils'
