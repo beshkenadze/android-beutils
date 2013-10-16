@@ -106,4 +106,8 @@ public class DatabaseTableHelper {
             }
         }
     }
+
+    public Dao getmDao() {
+        return mDao;
+    }
 }
