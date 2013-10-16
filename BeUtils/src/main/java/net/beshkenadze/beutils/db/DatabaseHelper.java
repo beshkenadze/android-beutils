@@ -27,7 +27,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     }
 
-    public static DatabaseHelper getInstance(Context context, String databaseName,  int databaseVersion,
+    public static DatabaseHelper getInstance(Context context, String databaseName, int databaseVersion,
                                              List<Class<?>> tables) {
 
         // Use the application context, which will ensure that you
@@ -68,7 +68,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     @Override
     public synchronized void close() {
-          super.close();
+        super.close();
     }
 
 }
