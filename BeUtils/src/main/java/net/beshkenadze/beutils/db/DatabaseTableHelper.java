@@ -15,9 +15,11 @@ public class DatabaseTableHelper {
     private Dao mDao = null;
     private DatabaseHelper mHelper;
     private Class<?> mClass;
+
     protected Dao<Object, Integer> getDao() {
         return mDao;
     }
+
     public DatabaseTableHelper(DatabaseHelper h, Class<?> c) {
 
         mHelper = h;
@@ -42,6 +44,7 @@ public class DatabaseTableHelper {
             throw new RuntimeException(e);
         }
     }
+
     public void update(Object mObject) {
         try {
             getDao().update(mObject);
@@ -51,6 +54,27 @@ public class DatabaseTableHelper {
             throw new RuntimeException(e);
         }
     }
+
+    public Object findById(int id) {
+        try {
+            return getDao().queryForId(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (java.sql.SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public long count() {
+        try {
+            return getDao().countOf();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (java.sql.SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public List<?> getAll() {
         try {
             return getDao().queryForAll();
@@ -70,6 +94,7 @@ public class DatabaseTableHelper {
             throw new RuntimeException(e);
         }
     }
+
     public void remove(Object mObject) {
         if (mObject != null) {
             try {
