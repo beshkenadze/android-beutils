@@ -16,7 +16,7 @@ public class DatabaseTableHelper {
     private DatabaseHelper mHelper;
     private Class<?> mClass;
 
-    protected Dao<Object, Integer> getDao() {
+    public Dao<Object, Integer> getDao() {
         return mDao;
     }
 
