@@ -1,5 +1,3 @@
-android-beutils
-===============
-
 Maven artifact in local repo
-  $ ./gradlew clean build uploadArchives
+===============
+```$ ./gradlew clean build uploadArchives```
