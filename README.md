@@ -1,5 +1,4 @@
-android-beutils
-===============
+Maven artifact in local repo
 
 ```bash
   $ git submodule update --init
