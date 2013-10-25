@@ -11,27 +11,25 @@ import java.util.List;
 /**
  * Created by akira on 30.09.13.
  */
-public class DatabaseTableHelper {
+public class DatabaseTableHelper<T> {
     private Dao mDao = null;
     private DatabaseHelper mHelper;
     private Class<?> mClass;
 
-    public Dao<Object, Integer> getDao() {
-        return mDao;
-    }
-
-    public DatabaseTableHelper(DatabaseHelper h, Class<?> c) {
-
-        mHelper = h;
-        mClass = c;
-
+    public Dao getDao() {
         try {
-            mDao = mHelper.getDao(mClass);
+           return mHelper.getDao(mClass);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (java.sql.SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public DatabaseTableHelper(DatabaseHelper h, Class<?> c) {
+        mHelper = h;
+        mClass = c;
+        mDao = getDao();
     }
 
     public boolean add(Object mObject) {

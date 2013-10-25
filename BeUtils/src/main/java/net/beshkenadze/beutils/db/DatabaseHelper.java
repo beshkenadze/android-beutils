@@ -27,6 +27,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     }
 
+
     public static DatabaseHelper getInstance(Context context, String databaseName, int databaseVersion,
                                              List<Class<?>> tables) {
 
@@ -44,9 +45,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void onCreate(SQLiteDatabase sqliteDatabase,
                          ConnectionSource connectionSource) {
         // Создаем таблицы, если они не существуют
-        for (Class<?> dbclass : mTables) {
+        for (Class<?> dbClass : mTables) {
             try {
-                TableUtils.createTableIfNotExists(connectionSource, dbclass);
+                TableUtils.createTableIfNotExists(connectionSource, dbClass);
             } catch (Exception e) {
             }
         }
