@@ -32,6 +32,11 @@ public class DatabaseTableHelper<T> {
         mDao = getDao();
     }
 
+
+    public DatabaseHelper getHelper() {
+        return mHelper;
+    }
+
     public boolean add(Object mObject) {
         try {
             getDao().create(mObject);
