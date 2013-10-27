@@ -4,8 +4,10 @@ package net.beshkenadze.beutils.db;
 import android.database.SQLException;
 
 import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.support.DatabaseConnection;
 import com.j256.ormlite.table.TableUtils;
 
+import java.sql.Savepoint;
 import java.util.List;
 
 /**
@@ -18,7 +20,7 @@ public class DatabaseTableHelper<T> {
 
     public Dao getDao() {
         try {
-           return mHelper.getDao(mClass);
+            return mHelper.getDao(mClass);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (java.sql.SQLException e) {
@@ -106,6 +108,35 @@ public class DatabaseTableHelper<T> {
                 e.printStackTrace();
             } catch (java.sql.SQLException e) {
                 throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public void saveBulkData(List<Object> objectTypes) {
+        long t1 = System.nanoTime();
+        try {
+            DatabaseConnection conn = getDao().startThreadConnection();
+            Savepoint savepoint = null;
+            try {
+                savepoint = conn.setSavePoint(null);
+                doInsert(objectTypes, getDao());
+            } finally {
+                conn.commit(savepoint);
+                getDao().endThreadConnection(conn);
+            }
+            long t2 = System.nanoTime();
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void doInsert(List<Object> objectTypes, Dao<Object, Integer> dao) {
+        for (Object a : objectTypes) {
+            try {
+                if (a != null)
+                    dao.createOrUpdate(a);
+            } catch (java.sql.SQLException e) {
+                e.printStackTrace();
             }
         }
     }
