@@ -10,7 +10,7 @@ buildscript {
 apply plugin: 'android-library'
 apply plugin: 'maven'
 
-version '0.2.4'
+version '0.2.4.1'
 group 'net.beshkenadze.android'
 
 repositories {

@@ -60,7 +60,7 @@ public class DatabaseTableHelper<T> {
         }
     }
 
-    public Object findById(int id) {
+    public Object findById(long id) {
         try {
             return getDao().queryForId(id);
         } catch (SQLException e) {
